@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+	<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>cccp.education</title>
+
+    <script>
+        (function() {
+          try {
+            const theme = localStorage.getItem('preferred-theme');
+            if (theme) {
+              document.documentElement.setAttribute('data-bs-theme', theme);
+            }
+          } catch (e) {
+            console.warn('Could not set theme from localStorage', e);
+          }
+        })();
+    </script>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"/>
+
+    <link rel="stylesheet"
+          href="css/styles.css"/>
+
+    <link href="css/asciidoctor.css"
+          rel="stylesheet"/>
+
+    <link rel="shortcut icon"
+          href="/img/favicon.ico"/>
+
+    <meta name="description"
+          content="cccp.education — Créateur de Contenus Commun Prolétaire. Briques logicielles libres pour créer du contenu autour de l'ecosysteme AsciiDoc, Gradle et Kotlin."/>
+    <meta name="keywords"
+          content="gradle, plugin, formation, open source, education, asciidoc, jbake"/>
+    <meta name="author" content="cccp.education"/>
+</head>
+	<body onload="prettyPrint()">
+	<div id="wrap" class="main-content-padding">
+		<div>
+            <nav class="navbar navbar-expand-lg fixed-top">
+                <div class="container">
+                    <a class="navbar-brand fw-bold" href="index.html#home">
+                        <i class="bi bi-hammer me-2"></i>
+                        <span class="brand-text">cccp.education</span>
+                    </a>
+
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav"
+                            aria-controls="navbarNav"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto align-items-start">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#home">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#plugins">Plugins</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#pipeline">Pipeline</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="docsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Docs</a>
+                                <ul class="dropdown-menu" aria-labelledby="docsDropdown">
+                                    <li><a class="dropdown-item" href="about.html">A propos</a></li>
+                                    <li><a class="dropdown-item" href="plugins.html">Catalogue plugins</a></li>
+                                    <li><a class="dropdown-item" href="blog.html">Blog</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="nav-item dropdown theme-switcher-container ms-lg-3">
+                            <button class="btn btn-outline-secondary dropdown-toggle theme-dropdown-btn"
+                                    type="button"
+                                    id="themeDropdown"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    aria-label="Selectionner le theme de l'interface">
+                                <i class="bi bi-sun"></i>
+                                <span id="current-theme" class="visually-hidden">Light</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="themeDropdown">
+                                <li><button class="dropdown-item theme-option" type="button" data-theme="light">
+                                    <i class="bi bi-sun me-2"></i>Light
+                                </button></li>
+                                <li><button class="dropdown-item theme-option" type="button" data-theme="dark">
+                                    <i class="bi bi-moon me-2"></i>Dark
+                                </button></li>
+                                <li><button class="dropdown-item theme-option" type="button" data-theme="high-contrast">
+                                    <i class="bi bi-circle-half me-2"></i>High Contrast
+                                </button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+		<main class="container">
+	
+			<div class="page-header">
+				<h1>Catalogue des Plugins</h1>
+			</div>
+		
+			<p><em>12 June 2026</em></p>
+		
+			<p><div class="sect1">
+<h2 id="_catalogue_des_briques_oss">Catalogue des Briques OSS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tous les plugins sont sous licence Apache 2.0, groupId <code>education.cccp</code>.
+Chaque plugin se clone et se consomme en deux commandes :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>cd &lt;plugin&gt;/ &amp;&amp; ./gradlew publishToMavenLocal
+cd .. &amp;&amp; ./gradlew &lt;tache&gt;</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_production_de_contenu">Production de contenu</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Plugin</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">planner-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generation de scenarios pedagogiques structures (SPG/SPD) assistee par LLM.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">codex-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pipeline documentaire : Asciidoctor→PDF, slides, RAG pgvector.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">slider-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Presentations Reveal.js AsciiDoc→HTML. Pipeline RAG IA, 10 langues.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">capsule-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Capture video capsule. Reveal.js + Playwright + TTS.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hyperframes-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pipeline AsciiDoc→MP4 via HyperFrames.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_documentation_sites">Documentation &amp; sites</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Plugin</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">document-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creation et publication documentaire multi-format (HTML, PDF, EPUB, DocBook).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bakery-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generation et deploiement de sites statiques via JBake + Thymeleaf.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">readme-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generation de README avec diagrammes PlantUML.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_infrastructure_socle">Infrastructure socle</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Plugin</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">codebase-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RAG socle pgvector partage, anonymisation, vibecoding.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">workspace-bom</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bill of Materials multi-module. Contrats partages cross-plugin.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">graphify-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extraction du graphe de connaissance du workspace → <code>graph.json</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">api-key-pool-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pool de cles API LLM avec rotation, tracking quotas, journalisation audit.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_diagrammes_visualisation">Diagrammes &amp; visualisation</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Plugin</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plantuml-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generation de diagrammes PlantUML via LLM (7 providers, RAG pgvector, knowledge graph).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_orchestration_pilotage">Orchestration &amp; pilotage</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Plugin</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">runner-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Orchestration, provisioning CLI, deploiement gh-pages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agile-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pilotage agile assiste par IA. 7 ateliers de cadrage + backlog + sprints.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ticket-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creation et suivi de tickets GitHub. Backlog→Issues, Kanban board.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">review-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code review assistee par IA. Analyse PR, score qualite, quality gates.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flow-gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Orchestration merge/close/CI. Merge quand gates OK, auto-close tickets.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_cockpit_ide">Cockpit IDE</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Plugin</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">workspace-agent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plugin JetBrains Platform. 5 dashboards IA + actions menu contextuel.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_environnement_de_travail">Environnement de travail</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 62.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Outil</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://cccp.education/magic-stick/">magic-stick</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISO bootable Xubuntu (7.4 Go). Tous les outils pre-installes (Gradle, JDK, Docker, JHipster).
+Documentation complete sur <a href="https://cccp.education/magic-stick/">cccp.education/magic-stick</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_consommer_un_plugin">Consommer un plugin</h3>
+<div class="paragraph">
+<p>Chaque plugin est concu pour etre utilise independamment. Exemple avec bakery-gradle :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">git clone https://github.com/cccp-education/bakery-gradle
+cd bakery-gradle/bakery-plugin &amp;&amp; ./gradlew publishToMavenLocal
+cd .. &amp;&amp; ./gradlew publishSite</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Deux commandes. Zero configuration externe. Le fichier <code>site.yml</code> (gitignore) est le seul a remplir, un exemple est fourni.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_liens">Liens</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/cccp-education">GitHub org</a> — tous les depots</p>
+</li>
+<li>
+<p><a href="https://central.sonatype.com/namespace/education.cccp">Maven Central</a> — artefacts publies</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></p>
+		
+			<hr />
+		</main>
+	</div>
+	<div>
+    <footer class="enhanced-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="fw-bold">
+                        <i class="bi bi-hammer me-2"></i>
+                        cccp.education
+                    </h5>
+                    <p class="footer-description">
+                        Créateur de Contenus Commun Prolétaire. Briques logicielles libres pour créer du contenu.
+                        Ecosysteme AsciiDoc, Gradle, Kotlin.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://github.com/cccp-education" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                        <a href="feed.xml" aria-label="Flux RSS"><i class="bi bi-rss"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="fw-bold">Plugins</h6>
+                    <ul class="footer-links">
+                        <li><a href="plugins.html"><i class="bi bi-chevron-right"></i>Catalogue</a></li>
+                        <li><a href="about.html"><i class="bi bi-chevron-right"></i>Licence Apache 2.0</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="fw-bold">Ressources</h6>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/cccp-education" target="_blank"><i class="bi bi-github"></i>GitHub org</a></li>
+                        <li><a href="https://central.sonatype.com/namespace/education.cccp" target="_blank"><i class="bi bi-box-seam"></i>Maven Central</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <hr class="footer-divider"/>
+            <div class="footer-bottom">
+                <p>&copy; 2024-<span>2026</span> cccp.education. Licence Apache 2.0.</p>
+                <div class="footer-bottom-links">
+                    <a href="https://github.com/cccp-education" target="_blank">GitHub</a>
+                    <a href="https://central.sonatype.com/namespace/education.cccp" target="_blank">Maven Central</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="js/script.js"></script>
+</div>
+    </body>
+</html>
